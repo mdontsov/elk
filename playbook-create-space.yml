@@ -1,0 +1,15 @@
+---
+- name: New space
+  hosts: localhost
+  tasks:
+    - name: Create new space in Kibana
+      ansible.builtin.uri:
+        url: http://localhost:5601/api/spaces/space
+        method: POST
+        headers:
+          Content-Type: application/json
+          kbn-xsrf: true
+        return_content: true
+        body_format: json
+        validate_certs: true
+        body: {"id": "new", "name": "Kibana NEW", "description": "This is Kibana NEW space", "disabledFeatures": []}

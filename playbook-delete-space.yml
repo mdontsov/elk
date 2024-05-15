@@ -1,0 +1,14 @@
+---
+- name: Delete space
+  hosts: localhost
+  tasks:
+    - name: Delete new space in Kibana
+      ansible.builtin.uri:
+        url: http://localhost:5601/api/spaces/space/new
+        method: DELETE
+        headers:
+          Content-Type: application/json
+          kbn-xsrf: true
+        return_content: true
+        validate_certs: true
+        force: true
